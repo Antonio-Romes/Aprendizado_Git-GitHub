@@ -97,19 +97,41 @@ A primeira é a Working Diretory que contém os arquivos vigentes, na segunda é
     git config --list
     ```
 
-## Repositório Local
-
- #### Criar novo repositório
+## Criando um novo repositório Local 
   - Primeiro precisamos criar uma pasta no computador, com o nome desejado. Depois precisamos abrir o prompt de comando (CMD) e navegar até a pasta criada e inicializar a pasta com repositório, para isso utilizamo o comando:
     ``` 
     git init
     ``` 
+
+  ## Obtenha um repositório
+  #### Local
+  - Fazer clone do repositório local
+    ``` 
+    git clone /caminho/para/o/repositório
+    ```
+
+ - Fazer clone do repositório remoto
+    - Temos duas forma de clonar um repositório remoto, que é por HTTPS e SSH. 
+        ``` 
+      git clone URL do repositório remoto
+        ```
+
+- Verificar se um repositório local esta vinculado ao remoto.
+    ``` 
+    git remote -v 
+    ``` 
+
+- Vincular repositório local ao remoto.
+    ``` 
+     git remote add origin "url do gitHub"
+    ```
+
+## Salvando alterações no repositório local
 - Verificar o estado dos arquivos
     ``` 
     git status
     ``` 
-
-- Adicionar arquivo ou diretório (staged area)
+#### adicionado os arquivos ao estado (index, stage) 
   - Podemos adicionar arquivo ou diretório especifíco
     ``` 
     git add nomeDoArquivo ou nomeDoDiretorio
@@ -119,7 +141,45 @@ A primeira é a Working Diretory que contém os arquivos vigentes, na segunda é
     ``` 
     git add .
     ``` 
-- Podemos adicionar um arquivo que esta listado no .gitignore  
+
+#### Realizar commit
+- Comitar informando mensagem 
     ``` 
-    git add -f arquivo_no_gitignore.txt
+    git commit -m "comentários das alterações"
     ```
+
+#### Pasta vazia
+- Quando são criados pasta e não é adicionada nenhum arquivo, ao verificar os status do arquivo, a pasta vazia não é visualizada, porque, o git status não consegue ver a pasta vazia.
+Para que possamos criar uma pasta vazia e o git status consiga ver, precisamo criar um arquivo .gitkeep
+ 
+ #### Ignorar pasta e arquivo
+  - Para que o git ignore arquivo ou pasta quando for enviar o projeto para o servidor remoto, basta adiciona os mesmo na pasta .gitignore
+
+#### Visualizar histórico
+ - 
+    ``` 
+    git log
+    ```
+
+#### Desfazendo alterações no repositório local.
+- Inicializa pasta errada
+  - Quando inicializamos uma paste que não excluir deveria, precisamos excluir a pasta git.
+
+#### Restaura arquivo que estão no estado (index/stage)
+- Quando for feita alteração em um arquivo que não queremos, podemos voltar ao status anterior
+-  Tenha muita atenção ao usar o comando git restore, por que, este comando desfaz toda alteração que já foram feitas localmente.
+    ``` 
+    git restore "nome do arquivo"
+    ``` 
+  
+#### Alterar mensagem do último commint ?
+- 
+    ``` 
+    git commit --amend -m"nova mensagem"
+    ``` 
+ 
+ ## Desfazer o último commit.
+			- git reset --
+				- soft
+				- hard
+				- mixed
