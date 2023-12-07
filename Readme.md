@@ -1,7 +1,7 @@
 # Git - guia prático
 
 ## O que é git ?
-- E um sistema de controle de versão de código livre, além de ser utilizado para rastrear modificações dos arquivos ao longo do tempo. Ele ajudar a coordenar trabalho em várias pessoas mantendo um histórico detalhado das alterações.
+- E um sistema de controle de versão de código livre, além de ser utilizado para rastrear modificações dos arquivos ao longo do tempo. Ele ajudar a coordenar trabalho de várias pessoas mantendo um histórico detalhado das alterações.
 
 ### Algumas característica
 - __Repositório__
@@ -163,7 +163,7 @@ Para que possamos criar uma pasta vazia e o git status consiga ver, precisamo cr
 
 #### Desfazendo alterações no repositório local.
 - Inicializa pasta errada
-  - Quando inicializamos uma paste que deveria, precisamos apenas excluir a pasta git.
+  - Quando inicializamos uma paste que não deveria, precisamos apenas excluir a pasta .git
 
 #### Restaura arquivo que estão no estado (index/stage)
 - Quando for feita alteração em um arquivo que não queremos, podemos voltar ao status anterior
@@ -197,7 +197,86 @@ Para que possamos criar uma pasta vazia e o git status consiga ver, precisamo cr
       ````
 
 ## Conectar com o repositório remoto
-  -
+  - Se voce não conectou a um repositório existente e quer conectar a um servidor remoto.
+     ````
+      git remote add origin "Nome do repositorio remoto" 
       ````
-        git remote add origin "Nome do repositorio remoto" 
+  - O primeiro push de um repositório deve conter o nome do repositório remoto e o branch.
       ````
+      git push -u origin master 
+      ````
+    
+  - Os demais pushes não precisam dessa informação
+    ````
+    git push
+    ````
+
+  ## Atualizar repositório local com repositório remoto.
+  - Baixar e mescla os arquivos no branch atual
+    ````
+    git pull
+    ````
+
+  - Baixar e não mescla os arquivos no branch atual
+    ````
+    git fetch
+    ````
+  
+  ## Trabalhando com branches
+  - Branches (Ramo), são utilizados para desenvolver funcionalidade isolada. Branch main e a branch padrão quando é criado um repositório. Use outros branches para desenvolver e mescle-os (merge) ao branch main após a conclusão.
+
+  - Criar um novo branch
+     ````
+     git checkout -b nomeDaBranch
+    ````
+  
+  - Retorne para branch especifica.
+     ````
+     git checkout nomeDaBranch
+    ````
+  
+  - Excluir branch  
+     ````
+     git branch -d nomeDaBranch
+    ````
+  
+  - Lista o último commit de cada branch  
+     ````
+     git branch -v
+    ````
+  
+  ## Fazer merge 
+  - Fazer merge de um outro branch ao seu branch ativo (ex. main)
+     ````
+     git merge nomeDaBranch
+    ````
+
+  - O git tenta fazer o merge automaticamente, isto nem sempre é possível em alguns caso pode causa conflitos. Você e responsável por resolver os conflitos manualmente, ou seja, precisamos editar os arquivos exibidos pelo git.
+     ````
+     git merge nomeDaBranch
+    ````
+
+  - Visualizar alteração entre branch
+     ````
+     git diff <branch origem> <branch destino>
+    ````
+
+  ## Armazenar temporariamente alterações não commitadas
+  - Git stash é um recurso que permite armazenar temporariamente alterações não commitadas em área oculta no repositório. Isso ajuda quando precisamos trabalhar em tarefa diferente ou preicar limpar seu ambiente de trabalho antes de fazer o commit.
+    ````
+     git stash
+    ````
+  - Visualizar as alterações armazenadas no stash
+    ````
+     git stash list
+    ````
+
+  - Para aplicar as alterações armazenadas em um stash, isso aplicará as alterações do stash atual ao seu ambiente de trabalho.
+    ````
+     git stash pop
+    ````
+
+  - Isso excluirá o stash atual do seu repositório.
+    ````
+     git stash drop
+    ````
