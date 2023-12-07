@@ -163,7 +163,7 @@ Para que possamos criar uma pasta vazia e o git status consiga ver, precisamo cr
 
 #### Desfazendo alterações no repositório local.
 - Inicializa pasta errada
-  - Quando inicializamos uma paste que não excluir deveria, precisamos excluir a pasta git.
+  - Quando inicializamos uma paste que deveria, precisamos apenas excluir a pasta git.
 
 #### Restaura arquivo que estão no estado (index/stage)
 - Quando for feita alteração em um arquivo que não queremos, podemos voltar ao status anterior
@@ -179,7 +179,25 @@ Para que possamos criar uma pasta vazia e o git status consiga ver, precisamo cr
     ``` 
  
  ## Desfazer o último commit.
-			- git reset --
-				- soft
-				- hard
-				- mixed
+- Git reset
+  - O git reset é utilizado para desfaz as alterações que estão no índice do git, mas não altera os arquivos na árvore de trabalho. Os arquivos ainda estão nos arquivos, mas não serão rastreados pelo git.
+  - O git reset possui 3 forma de ser usado, que correspondem aos argumentos soft, mixed e hard.
+	 - soft
+      O git soft restaura o estado do head para um commit especifico, mas não altera os arquivos na árvore de trabalho. Isso restaurará o estado do HEAD para o commit anterior
+       ``` 
+       git reset --soft HEAD~1      
+    - mixed
+      O mixed restaura o estado do HEAD para o commit especificado e, em seguida, mescla as alterações feitas após o commit especificado nos arquivos na árvore de trabalho. Isso restaurará o estado do HEAD para o commit anterior. No entanto, os arquivos na árvore de trabalho terão as alterações feitas após o commit especificado, mas apenas as alterações que ainda não foram commitadas.
+      ``` 
+       git reset --mixed HEAD~1
+    - hard
+    O hard restaura o estado do HEAD para o commit especificado e, em seguida, remove todas as alterações feitas após o commit especificado dos arquivos na árvore de trabalho.Isso restaurará o estado do HEAD para o commit anterior. No entanto, os arquivos na árvore de trabalho serão revertidos para o estado que eles tinham no commit especificado.
+      ````
+        git reset --hard HEAD~1 
+      ````
+
+## Conectar com o repositório remoto
+  -
+      ````
+        git remote add origin "Nome do repositorio remoto" 
+      ````
